@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2041
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hawk", "hawk\hawk.csproj", "{81F1AE79-4BAD-45F4-B426-BC8198281C45}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{81F1AE79-4BAD-45F4-B426-BC8198281C45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81F1AE79-4BAD-45F4-B426-BC8198281C45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81F1AE79-4BAD-45F4-B426-BC8198281C45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81F1AE79-4BAD-45F4-B426-BC8198281C45}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {93AF4011-BCC4-41BD-8DD4-732B11648A5C}
+	EndGlobalSection
+EndGlobal
