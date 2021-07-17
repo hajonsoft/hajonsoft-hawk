@@ -1,8 +1,0 @@
-C:\Users\aliayman\Documents\projects\hawk\hawk\bin\Debug\hawk.exe.config
-C:\Users\aliayman\Documents\projects\hawk\hawk\bin\Debug\hawk.exe
-C:\Users\aliayman\Documents\projects\hawk\hawk\bin\Debug\hawk.pdb
-C:\Users\aliayman\Documents\projects\hawk\hawk\obj\Debug\hawk.Properties.Resources.resources
-C:\Users\aliayman\Documents\projects\hawk\hawk\obj\Debug\hawk.csproj.GenerateResource.cache
-C:\Users\aliayman\Documents\projects\hawk\hawk\obj\Debug\hawk.csproj.CoreCompileInputs.cache
-C:\Users\aliayman\Documents\projects\hawk\hawk\obj\Debug\hawk.exe
-C:\Users\aliayman\Documents\projects\hawk\hawk\obj\Debug\hawk.pdb
