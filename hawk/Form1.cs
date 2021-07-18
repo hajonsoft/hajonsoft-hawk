@@ -26,8 +26,34 @@ namespace hawk
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            Text = "hawk " + string.Join(" ", args);
+            Text = string.Join(" ", args);
+            var parameters= args[0].Replace("hawk://","").Replace("hawk://", "").Split(',');
+            var mode = GetParameterValue(parameters, "mode");
+            var fileName = GetParameterValue(parameters, "fileName");
+            var host = GetParameterValue(parameters,"host");
+
+            lblMessage.Text = "Mode = " + mode + "  FileName= " + fileName + "  Host=" + host;
+// hawk://mode=send,fileName=SomePassports_qwgnty.zip,host=breno1-81c45/
         }
+
+        private string GetParameterValue(string[] parameters, string key)
+        {
+            for (int i = 0; i < parameters.Count(); i++)
+            {
+                if (parameters[i].StartsWith(key))
+                {
+                    var parameterKeyValue = parameters[i].Split('=');
+                    if (parameterKeyValue.Count() >= 2)
+                    {
+                        return parameterKeyValue[1];
+                    }
+                }
+            }
+
+            return "";
+
+        }
+        
 
         private void btnSetup_Click(object sender, EventArgs e)
         {
