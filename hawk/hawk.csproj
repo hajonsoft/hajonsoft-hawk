@@ -38,6 +38,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -88,4 +89,7 @@
     <Content Include="hawk.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy C:\Users\aliayman\Documents\projects\hawk\hawk\bin\Debug\hawk.exe c:\hajonsoft\hawk\hawk.exe</PostBuildEvent>
+  </PropertyGroup>
 </Project>

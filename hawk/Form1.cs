@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO.Compression;
 
 namespace hawk
 {
@@ -18,6 +19,11 @@ namespace hawk
         static string HAWK_FOLDER = @"hawk";
         static string EAGLE_FOLDER = @"eagle";
         public string[] args;
+        private string mode;
+        private string zipFileName;
+        private string host;
+        private string downloadFolder;
+        private string extractPath;
         public frmMain()
         {
             InitializeComponent();
@@ -26,14 +32,60 @@ namespace hawk
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            Text = string.Join(" ", args);
-            var parameters= args[0].Replace("hawk://","").Replace("hawk://", "").Split(',');
-            var mode = GetParameterValue(parameters, "mode");
-            var fileName = GetParameterValue(parameters, "fileName");
-            var host = GetParameterValue(parameters,"host");
+            parseParameters();
+            // This zipfile will contain only one file data.json. If you call node witout any parameter, it will use data.json
+            //unzipFile(zipFileName);
+            if (mode == "send")
+            {
+                File.WriteAllText("run.bat", "node " + Path.Combine(HAJONSOFT_FOLDER, EAGLE_FOLDER, "index.js") + " " + zipFileName + Environment.NewLine + " pause");
+                Process.Start("run.bat");
+                Application.Exit();
+            }
 
-            lblMessage.Text = "Mode = " + mode + "  FileName= " + fileName + "  Host=" + host;
-// hawk://mode=send,fileName=SomePassports_qwgnty.zip,host=breno1-81c45/
+        }
+
+        private void unzipFile(string zipFileName)
+        {
+            if (string.IsNullOrEmpty( zipFileName))
+            {
+                LogError("zipFileName is empty");
+                return;
+            }
+
+            var zipFilePath = Path.Combine(downloadFolder, zipFileName);
+            // TODO: Provide a way for the user to change the download folder in a settings file
+            if (!File.Exists(zipFilePath))
+            {
+                LogError("zipFileName is empty");
+                return;
+            }
+            extractPath = Path.Combine(HAJONSOFT_FOLDER, EAGLE_FOLDER);
+            ZipFile.ExtractToDirectory(zipFilePath, extractPath);
+        }
+
+        private void LogError(string errorMessage)
+        {
+            Console.WriteLine(errorMessage);
+        }
+
+        private void parseParameters()
+        {
+            // hawk://mode=send,fileName=SomePassports_qwgnty.zip,host=breno1-81c45/
+            Text = string.Join(" ", args);
+            var parameters = args[0].Replace("hawk://", "").Replace("hawk://", "").Split(',');
+            mode = GetParameterValue(parameters, "mode");
+            zipFileName = GetParameterValue(parameters, "fileName");
+            host = GetParameterValue(parameters, "host");
+            if (string.IsNullOrEmpty( txtDownloadFolder.Text))
+            {
+                downloadFolder = Path.Combine(
+        Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+        "Downloads");
+                txtDownloadFolder.Text = downloadFolder;
+            }
+
+
+            tslMessage.Text = "Mode = " + mode + "  FileName= " + zipFileName + "  Host=" + host + "  DownloadFolder=" + downloadFolder;
         }
 
         private string GetParameterValue(string[] parameters, string key)
