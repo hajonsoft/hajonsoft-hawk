@@ -34,7 +34,7 @@ namespace hawk
         {
             parseParameters();
             // This zipfile will contain only one file data.json. If you call node witout any parameter, it will use data.json
-            //unzipFile(zipFileName);
+            unzipFile(zipFileName);
             if (mode == "send")
             {
                 File.WriteAllText("run.bat", "node " + Path.Combine(HAJONSOFT_FOLDER, EAGLE_FOLDER, "index.js") + " " + zipFileName + Environment.NewLine + " pause");
@@ -46,7 +46,7 @@ namespace hawk
 
         private void unzipFile(string zipFileName)
         {
-            if (string.IsNullOrEmpty( zipFileName))
+            if (string.IsNullOrEmpty(zipFileName))
             {
                 LogError("zipFileName is empty");
                 return;
@@ -60,6 +60,9 @@ namespace hawk
                 return;
             }
             extractPath = Path.Combine(HAJONSOFT_FOLDER, EAGLE_FOLDER);
+            if (File.Exists(Path.Combine(extractPath, "data.json"))) {
+                File.Delete(Path.Combine(extractPath, "data.json"));
+                }
             ZipFile.ExtractToDirectory(zipFilePath, extractPath);
         }
 
