@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO.Compression;
+using System.Net;
+using System.Threading;
 
 namespace hawk
 {
@@ -18,6 +20,7 @@ namespace hawk
         static string HAJONSOFT_FOLDER = @"c:\hajonsoft";
         static string HAWK_FOLDER = @"hawk";
         static string EAGLE_FOLDER = @"eagle";
+        private string EAGLE_URL = "http://github.com/hajonsoft/hajonsoft-eagle/archive/refs/heads/main.zip";
         public string[] args;
         private string mode;
         private string zipFileName;
@@ -32,6 +35,10 @@ namespace hawk
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
+            if (!isReady())
+            {
+                return;
+            }
             parseParameters();
             // This zipfile will contain only one file data.json. If you call node witout any parameter, it will use data.json
             unzipFile(zipFileName);
@@ -42,6 +49,11 @@ namespace hawk
                 Application.Exit();
             }
 
+        }
+
+        private bool isReady()
+        {
+            return false;
         }
 
         private void unzipFile(string zipFileName)
@@ -112,18 +124,11 @@ namespace hawk
 
         private void btnSetup_Click(object sender, EventArgs e)
         {
-            confirmHawkSetup();
-            var setupLines = new List<string>
-            {
-                "node -v",
-                "pause"
-            };
-            File.WriteAllLines("setup.bat", setupLines);
-
-            Process.Start("setup.bat");
+            createFoldersIfNotPresent();
+            downloadEagle(false);
         }
 
-        private void confirmHawkSetup() {
+        private void createFoldersIfNotPresent() {
             if (!Directory.Exists(HAJONSOFT_FOLDER))
             {
                 Directory.CreateDirectory(HAJONSOFT_FOLDER);
@@ -144,6 +149,59 @@ namespace hawk
             // check eagle script is installed in c:\hajonsoft\eagle otherwise prompt or download it
 
             // check there is node_modules otherwise prompt or run npm i
+        }
+
+        private void downloadEagle(bool checkIsPresent)
+        {
+
+            if (checkIsPresent)
+            {
+                if (File.Exists(Path.Combine(HAJONSOFT_FOLDER, EAGLE_FOLDER, "package.json")))
+                {
+                    return;
+                }
+            }
+            using (WebClient client = new WebClient())
+            {
+                client.DownloadFile(new Uri(EAGLE_URL), Path.Combine(HAJONSOFT_FOLDER, "eagle.zip"));
+            }
+            ZipFile.ExtractToDirectory(Path.Combine(HAJONSOFT_FOLDER, "eagle.zip"), HAJONSOFT_FOLDER);
+            var renameLines = new List<string>
+            {
+                @"c:",
+                @"cd c:\hajonsoft",
+                "rmdir eagle /s/q",
+                "ren hajonsoft-eagle-main eagle",
+                @"cd c:\hajonsoft\eagle",
+                @"npm i",
+                //"pause",
+            };
+            File.WriteAllLines("rename-eagle.bat", renameLines);
+            Process.Start("rename-eagle.bat");
+
+        }
+
+        private void btnCleanup_Click(object sender, EventArgs e)
+        {
+            createFoldersIfNotPresent();
+
+            //Create a batch file and execute it
+            var cleanupLines = new List<string>
+            {
+                @"c:",
+                @"cd c:\hajonsoft\eagle",
+                "del *.* /q/s",
+                "cd ..",
+                "rmdir eagle /s/q",
+                 @"cd c:\hajonsoft\hajonsoft-eagle-main",
+                "del *.* /q/s",
+                "cd ..",
+                "rmdir hajonsoft-eagle-main /s/q",
+                @"del c:\hajonsoft\eagle.zip",
+                //"pause",
+            };
+            File.WriteAllLines("cleanup-eagle.bat", cleanupLines);
+            Process.Start("cleanup-eagle.bat");
         }
     }
 }

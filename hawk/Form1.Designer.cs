@@ -40,6 +40,7 @@
             this.txtFileName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnCleanup = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,7 +51,7 @@
             this.btnSetup.Name = "btnSetup";
             this.btnSetup.Size = new System.Drawing.Size(162, 23);
             this.btnSetup.TabIndex = 1;
-            this.btnSetup.Text = "Reset/Setup";
+            this.btnSetup.Text = "Restart Setup";
             this.btnSetup.UseVisualStyleBackColor = true;
             this.btnSetup.Click += new System.EventHandler(this.btnSetup_Click);
             // 
@@ -143,17 +144,29 @@
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(463, 390);
+            this.label3.Location = new System.Drawing.Point(295, 390);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(157, 13);
             this.label3.TabIndex = 10;
             this.label3.Text = "Something wrong? reset setup!";
+            // 
+            // btnCleanup
+            // 
+            this.btnCleanup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCleanup.Location = new System.Drawing.Point(458, 385);
+            this.btnCleanup.Name = "btnCleanup";
+            this.btnCleanup.Size = new System.Drawing.Size(162, 23);
+            this.btnCleanup.TabIndex = 11;
+            this.btnCleanup.Text = "Clean up";
+            this.btnCleanup.UseVisualStyleBackColor = true;
+            this.btnCleanup.Click += new System.EventHandler(this.btnCleanup_Click);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnCleanup);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnBrowseFile);
             this.Controls.Add(this.txtFileName);
@@ -186,6 +199,7 @@
         private System.Windows.Forms.TextBox txtFileName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnCleanup;
     }
 }
 
