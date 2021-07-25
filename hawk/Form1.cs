@@ -39,12 +39,13 @@ namespace hawk
             {
                 return;
             }
+            lblNotReady.Visible = false;
             parseParameters();
             // This zipfile will contain only one file data.json. If you call node witout any parameter, it will use data.json
-            unzipFile(zipFileName);
             if (mode == "send")
             {
-                File.WriteAllText("run.bat", "node " + Path.Combine(HAJONSOFT_FOLDER, EAGLE_FOLDER, "index.js") + " " + zipFileName + Environment.NewLine + " pause");
+                unzipFile(zipFileName);
+                File.WriteAllText("run.bat", "node " + Path.Combine(HAJONSOFT_FOLDER, EAGLE_FOLDER, "index.js") +  Environment.NewLine + " pause");
                 Process.Start("run.bat");
                 Application.Exit();
             }
@@ -53,7 +54,12 @@ namespace hawk
 
         private bool isReady()
         {
-            return false;
+            if (!Directory.Exists(HAJONSOFT_FOLDER)) return false;
+            if (!Directory.Exists(Path.Combine(HAJONSOFT_FOLDER, EAGLE_FOLDER))) return false;
+            if (!File.Exists(Path.Combine(HAJONSOFT_FOLDER, EAGLE_FOLDER, "package.json"))) return false;
+            if (!Directory.Exists(Path.Combine(HAJONSOFT_FOLDER, EAGLE_FOLDER, "node_modules"))) return false;
+
+            return true;
         }
 
         private void unzipFile(string zipFileName)

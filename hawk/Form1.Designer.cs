@@ -41,6 +41,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btnCleanup = new System.Windows.Forms.Button();
+            this.lblNotReady = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -161,11 +162,25 @@
             this.btnCleanup.UseVisualStyleBackColor = true;
             this.btnCleanup.Click += new System.EventHandler(this.btnCleanup_Click);
             // 
+            // lblNotReady
+            // 
+            this.lblNotReady.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblNotReady.AutoSize = true;
+            this.lblNotReady.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNotReady.ForeColor = System.Drawing.Color.Red;
+            this.lblNotReady.Location = new System.Drawing.Point(192, 47);
+            this.lblNotReady.Name = "lblNotReady";
+            this.lblNotReady.Size = new System.Drawing.Size(416, 25);
+            this.lblNotReady.TabIndex = 12;
+            this.lblNotReady.Text = "NOT READY: Please run cleanup and setup";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblNotReady);
             this.Controls.Add(this.btnCleanup);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnBrowseFile);
@@ -200,6 +215,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnCleanup;
+        private System.Windows.Forms.Label lblNotReady;
     }
 }
 
