@@ -21,6 +21,7 @@ namespace hawk
         static string HAWK_FOLDER = @"hawk";
         static string EAGLE_FOLDER = @"eagle";
         private string EAGLE_URL = "http://github.com/hajonsoft/hajonsoft-eagle/archive/refs/heads/main.zip";
+        private string HAWK_REG_URL = "https://raw.githubusercontent.com/hajonsoft/hajonsoft-hawk/main/hawk/hawk.reg";
         public string[] args;
         private string mode;
         private string zipFileName;
@@ -92,6 +93,10 @@ namespace hawk
         private void parseParameters()
         {
             // hawk://mode=send,fileName=SomePassports_qwgnty.zip,host=breno1-81c45/
+            if (args == null || args.Count() == 0)
+            {
+                return;
+            }
             Text = string.Join(" ", args);
             var parameters = args[0].Replace("hawk://", "").Replace("hawk://", "").Split(',');
             mode = GetParameterValue(parameters, "mode");
@@ -132,6 +137,7 @@ namespace hawk
         {
             createFoldersIfNotPresent();
             downloadEagle(false);
+            downloadReg();
         }
 
         private void createFoldersIfNotPresent() {
@@ -159,7 +165,6 @@ namespace hawk
 
         private void downloadEagle(bool checkIsPresent)
         {
-
             if (checkIsPresent)
             {
                 if (File.Exists(Path.Combine(HAJONSOFT_FOLDER, EAGLE_FOLDER, "package.json")))
@@ -185,6 +190,32 @@ namespace hawk
             File.WriteAllLines("rename-eagle.bat", renameLines);
             Process.Start("rename-eagle.bat");
 
+        }
+
+        private void downloadReg()
+        {
+            
+            using (WebClient client = new WebClient())
+            {
+                client.DownloadFile(new Uri(HAWK_REG_URL), Path.Combine(HAJONSOFT_FOLDER, HAWK_FOLDER, "hawk.reg"));
+            }
+
+            var currentLocation = Path.Combine(Application.StartupPath, "hawk.exe");
+            var copyLine = @"xcopy " + currentLocation + " " + Path.Combine(HAJONSOFT_FOLDER, HAWK_FOLDER, "hawk.exe") + " /y";
+            if (Application.StartupPath.ToLower() == @"c:\hajonsoft\hawk")
+            {
+                copyLine = "";
+            }
+
+            var hawkSetupLines = new List<string>
+            {
+                @"pause",
+                copyLine,
+                @"start c:\hajonsoft\hawk\hawk.reg",
+            };
+            File.WriteAllLines("hawk-setup.bat", hawkSetupLines);
+            Process.Start("hawk-setup.bat");
+            Application.Exit();
         }
 
         private void btnCleanup_Click(object sender, EventArgs e)
