@@ -34,14 +34,17 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tslMessage = new System.Windows.Forms.ToolStripStatusLabel();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtDownloadFolder = new System.Windows.Forms.TextBox();
             this.btnBrowseFolders = new System.Windows.Forms.Button();
             this.btnBrowseFile = new System.Windows.Forms.Button();
-            this.txtFileName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btnCleanup = new System.Windows.Forms.Button();
             this.lblNotReady = new System.Windows.Forms.Label();
+            this.btnStart = new System.Windows.Forms.Button();
+            this.txtFileName = new System.Windows.Forms.TextBox();
+            this.txtDownloadFolder = new System.Windows.Forms.TextBox();
+            this.dffDebugMode = new System.Windows.Forms.CheckBox();
+            this.btnOpenTerminal = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -94,15 +97,6 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Download Folder:";
             // 
-            // txtDownloadFolder
-            // 
-            this.txtDownloadFolder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDownloadFolder.Location = new System.Drawing.Point(109, 90);
-            this.txtDownloadFolder.Name = "txtDownloadFolder";
-            this.txtDownloadFolder.Size = new System.Drawing.Size(636, 20);
-            this.txtDownloadFolder.TabIndex = 5;
-            // 
             // btnBrowseFolders
             // 
             this.btnBrowseFolders.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -122,15 +116,6 @@
             this.btnBrowseFile.TabIndex = 9;
             this.btnBrowseFile.Text = "...";
             this.btnBrowseFile.UseVisualStyleBackColor = true;
-            // 
-            // txtFileName
-            // 
-            this.txtFileName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFileName.Location = new System.Drawing.Point(109, 127);
-            this.txtFileName.Name = "txtFileName";
-            this.txtFileName.Size = new System.Drawing.Size(636, 20);
-            this.txtFileName.TabIndex = 8;
             // 
             // label2
             // 
@@ -175,11 +160,68 @@
             this.lblNotReady.TabIndex = 12;
             this.lblNotReady.Text = "NOT READY: Please run cleanup and setup";
             // 
+            // btnStart
+            // 
+            this.btnStart.Location = new System.Drawing.Point(109, 168);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(215, 38);
+            this.btnStart.TabIndex = 13;
+            this.btnStart.Text = "Start";
+            this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            // 
+            // txtFileName
+            // 
+            this.txtFileName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFileName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::hawk.Properties.Settings.Default, "fileName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtFileName.Location = new System.Drawing.Point(109, 127);
+            this.txtFileName.Name = "txtFileName";
+            this.txtFileName.Size = new System.Drawing.Size(636, 20);
+            this.txtFileName.TabIndex = 8;
+            this.txtFileName.Text = global::hawk.Properties.Settings.Default.fileName;
+            // 
+            // txtDownloadFolder
+            // 
+            this.txtDownloadFolder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDownloadFolder.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::hawk.Properties.Settings.Default, "downloadFolder", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtDownloadFolder.Location = new System.Drawing.Point(109, 90);
+            this.txtDownloadFolder.Name = "txtDownloadFolder";
+            this.txtDownloadFolder.Size = new System.Drawing.Size(636, 20);
+            this.txtDownloadFolder.TabIndex = 5;
+            this.txtDownloadFolder.Text = global::hawk.Properties.Settings.Default.downloadFolder;
+            // 
+            // dffDebugMode
+            // 
+            this.dffDebugMode.AutoSize = true;
+            this.dffDebugMode.Location = new System.Drawing.Point(330, 180);
+            this.dffDebugMode.Name = "dffDebugMode";
+            this.dffDebugMode.Size = new System.Drawing.Size(86, 17);
+            this.dffDebugMode.TabIndex = 14;
+            this.dffDebugMode.Text = "Debug mode";
+            this.dffDebugMode.UseVisualStyleBackColor = true;
+            // 
+            // btnOpenTerminal
+            // 
+            this.btnOpenTerminal.BackColor = System.Drawing.Color.Black;
+            this.btnOpenTerminal.ForeColor = System.Drawing.Color.White;
+            this.btnOpenTerminal.Location = new System.Drawing.Point(658, 168);
+            this.btnOpenTerminal.Name = "btnOpenTerminal";
+            this.btnOpenTerminal.Size = new System.Drawing.Size(87, 38);
+            this.btnOpenTerminal.TabIndex = 15;
+            this.btnOpenTerminal.Text = "Open terminal";
+            this.btnOpenTerminal.UseVisualStyleBackColor = false;
+            this.btnOpenTerminal.Click += new System.EventHandler(this.btnOpenTerminal_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnOpenTerminal);
+            this.Controls.Add(this.dffDebugMode);
+            this.Controls.Add(this.btnStart);
             this.Controls.Add(this.lblNotReady);
             this.Controls.Add(this.btnCleanup);
             this.Controls.Add(this.label3);
@@ -216,6 +258,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnCleanup;
         private System.Windows.Forms.Label lblNotReady;
+        private System.Windows.Forms.Button btnStart;
+        private System.Windows.Forms.CheckBox dffDebugMode;
+        private System.Windows.Forms.Button btnOpenTerminal;
     }
 }
 

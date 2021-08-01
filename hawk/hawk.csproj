@@ -90,6 +90,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy C:\Users\aliayman\Documents\projects\hawk\hawk\bin\Debug\hawk.exe c:\hajonsoft\hawk\hawk.exe</PostBuildEvent>
+    <PostBuildEvent>copy C:\Users\aliayman\Documents\projects\hawk\hawk\bin\Release\hawk.exe c:\hajonsoft\hawk\hawk.exe</PostBuildEvent>
   </PropertyGroup>
 </Project>

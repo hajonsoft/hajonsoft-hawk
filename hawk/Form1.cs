@@ -46,8 +46,7 @@ namespace hawk
             if (mode == "send")
             {
                 unzipFile(zipFileName);
-                File.WriteAllText("run.bat", "node " + Path.Combine(HAJONSOFT_FOLDER, EAGLE_FOLDER, "index.js") +  Environment.NewLine + " pause");
-                Process.Start("run.bat");
+                startSend(@"c:\hajonsoft\eagle\data.json", "", false);
                 Application.Exit();
             }
 
@@ -239,6 +238,54 @@ namespace hawk
             };
             File.WriteAllLines("cleanup-eagle.bat", cleanupLines);
             Process.Start("cleanup-eagle.bat");
+        }
+
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            startSend(txtFileName.Text, txtDownloadFolder.Text, dffDebugMode.Checked);
+        }
+
+        private void btnOpenTerminal_Click(object sender, EventArgs e)
+        {
+            var startInfo = new System.Diagnostics.ProcessStartInfo
+            {
+                WorkingDirectory = @"c:\hajonsoft\eagle",
+                WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal,
+                FileName = "cmd.exe",
+                RedirectStandardInput = false,
+                UseShellExecute = true
+            };
+            Process.Start(startInfo);
+        }
+
+        private void startSend(string dataFile, string downloadLocation, bool debugMode)
+        {
+            var startLines = new List<string>
+            {
+                @"c:",
+                @"cd " + Path.Combine(HAJONSOFT_FOLDER, EAGLE_FOLDER),
+                @"node .",
+                "pause",
+            };
+            if (!string.IsNullOrEmpty(dataFile) && dataFile.EndsWith(".json"))
+            {
+                if (debugMode)
+                {
+                    startLines[2] = @"node . debug";
+                }
+                File.WriteAllLines(@"c:\hajonsoft\eagle\run.bat", startLines);
+
+                var startInfo = new System.Diagnostics.ProcessStartInfo
+                {
+                    WorkingDirectory = @"c:\hajonsoft\eagle",
+                    WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal,
+                    FileName = @"c:\hajonsoft\eagle\run.bat",
+                    RedirectStandardInput = false,
+                    UseShellExecute = true
+                };
+                Process.Start(startInfo);
+
+            }
         }
     }
 }
