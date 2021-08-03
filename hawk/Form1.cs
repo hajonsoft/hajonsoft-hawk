@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using System.IO.Compression;
 using System.Net;
 using System.Threading;
+using hawk.Properties;
 
 namespace hawk
 {
@@ -26,12 +27,17 @@ namespace hawk
         private string mode;
         private string zipFileName;
         private string host;
-        private string downloadFolder;
         private string extractPath;
         public frmMain()
         {
             InitializeComponent();
             Load += FrmMain_Load;
+            FormClosing += FrmMain_FormClosing;
+        }
+
+        private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Settings.Default.Save();
         }
 
         private void FrmMain_Load(object sender, EventArgs e)
@@ -45,8 +51,7 @@ namespace hawk
             // This zipfile will contain only one file data.json. If you call node witout any parameter, it will use data.json
             if (mode == "send")
             {
-                unzipFile(zipFileName);
-                startSend(@"c:\hajonsoft\eagle\data.json", "", false);
+                startSend(zipFileName,  false);
                 Application.Exit();
             }
 
@@ -62,16 +67,14 @@ namespace hawk
             return true;
         }
 
-        private void unzipFile(string zipFileName)
+        private void unzipFile(string zipFilePath)
         {
-            if (string.IsNullOrEmpty(zipFileName))
+            if (string.IsNullOrEmpty(zipFilePath))
             {
                 LogError("zipFileName is empty");
                 return;
             }
 
-            var zipFilePath = Path.Combine(downloadFolder, zipFileName);
-            // TODO: Provide a way for the user to change the download folder in a settings file
             if (!File.Exists(zipFilePath))
             {
                 LogError("zipFileName is empty");
@@ -101,16 +104,27 @@ namespace hawk
             mode = GetParameterValue(parameters, "mode");
             zipFileName = GetParameterValue(parameters, "fileName");
             host = GetParameterValue(parameters, "host");
-            if (string.IsNullOrEmpty( txtDownloadFolder.Text))
-            {
-                downloadFolder = Path.Combine(
+            var defaultDownloadFolder = Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
         "Downloads");
-                txtDownloadFolder.Text = downloadFolder;
+            var defaultZipFilePath = Path.Combine(defaultDownloadFolder, zipFileName);
+            
+            if (File.Exists(defaultZipFilePath))
+            {
+                zipFileName = defaultZipFilePath;
+                tslMessage.Text = "Mode = " + mode + "  FileName= " + zipFileName + "  Host=" + host + "  DownloadFolder=" + Path.GetDirectoryName(zipFileName);
+                return;
+            }
+            if (!string.IsNullOrEmpty( txtFileName.Text))
+            {
+                var userSelectedZipFilePath = Path.Combine(Path.GetDirectoryName(txtFileName.Text), zipFileName);
+                if (File.Exists(userSelectedZipFilePath))
+                {
+                    zipFileName = userSelectedZipFilePath;
+                }
+
             }
 
-
-            tslMessage.Text = "Mode = " + mode + "  FileName= " + zipFileName + "  Host=" + host + "  DownloadFolder=" + downloadFolder;
         }
 
         private string GetParameterValue(string[] parameters, string key)
@@ -136,7 +150,7 @@ namespace hawk
         {
             createFoldersIfNotPresent();
             downloadEagle(false);
-            downloadReg();
+            // downloadReg();
         }
 
         private void createFoldersIfNotPresent() {
@@ -152,14 +166,6 @@ namespace hawk
             {
                 Directory.CreateDirectory(Path.Combine(HAJONSOFT_FOLDER, EAGLE_FOLDER));
             }
-            // setup url handler try executing hawk.reg from resourcs. I can't do it with the little help available on the internet and incorrect information
-
-
-            // Check node is installed, if not prompt
-
-            // check eagle script is installed in c:\hajonsoft\eagle otherwise prompt or download it
-
-            // check there is node_modules otherwise prompt or run npm i
         }
 
         private void downloadEagle(bool checkIsPresent)
@@ -174,6 +180,8 @@ namespace hawk
             using (WebClient client = new WebClient())
             {
                 client.DownloadFile(new Uri(EAGLE_URL), Path.Combine(HAJONSOFT_FOLDER, "eagle.zip"));
+                client.DownloadFile(new Uri(HAWK_REG_URL), Path.Combine(HAJONSOFT_FOLDER, HAWK_FOLDER, "hawk.reg"));
+
             }
             ZipFile.ExtractToDirectory(Path.Combine(HAJONSOFT_FOLDER, "eagle.zip"), HAJONSOFT_FOLDER);
             var renameLines = new List<string>
@@ -184,10 +192,11 @@ namespace hawk
                 "ren hajonsoft-eagle-main eagle",
                 @"cd c:\hajonsoft\eagle",
                 @"npm i",
+                @"start c:\hajonsoft\hawk\hawk.reg",
                 //"pause",
             };
-            File.WriteAllLines("rename-eagle.bat", renameLines);
-            Process.Start("rename-eagle.bat");
+            File.WriteAllLines(Path.Combine(HAJONSOFT_FOLDER, HAWK_FOLDER, "rename-eagle.bat"), renameLines);
+            Process.Start(Path.Combine(HAJONSOFT_FOLDER, HAWK_FOLDER, "rename-eagle.bat"));
 
         }
 
@@ -242,7 +251,7 @@ namespace hawk
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            startSend(txtFileName.Text, txtDownloadFolder.Text, dffDebugMode.Checked);
+            startSend(txtFileName.Text, dffDebugMode.Checked);
         }
 
         private void btnOpenTerminal_Click(object sender, EventArgs e)
@@ -258,20 +267,28 @@ namespace hawk
             Process.Start(startInfo);
         }
 
-        private void startSend(string dataFile, string downloadLocation, bool debugMode)
+        private void startSend(string dataFile, bool debugMode)
         {
+            if (!File.Exists(dataFile))
+            {
+                MessageBox.Show("Data file not found! Please check the file exists and try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error) ;
+                return;
+            }
+            if (Path.GetExtension(dataFile).ToLower() == ".zip") {
+                unzipFile(dataFile);
+            }
             var startLines = new List<string>
             {
                 @"c:",
                 @"cd " + Path.Combine(HAJONSOFT_FOLDER, EAGLE_FOLDER),
                 @"node .",
-                "pause",
             };
-            if (!string.IsNullOrEmpty(dataFile) && dataFile.EndsWith(".json"))
+            if (!string.IsNullOrEmpty(dataFile) && File.Exists(Path.Combine(HAJONSOFT_FOLDER, EAGLE_FOLDER, "data.json")))
             {
                 if (debugMode)
                 {
                     startLines[2] = @"node . debug";
+                    startLines.Add("pause");
                 }
                 File.WriteAllLines(@"c:\hajonsoft\eagle\run.bat", startLines);
 
@@ -286,6 +303,19 @@ namespace hawk
                 Process.Start(startInfo);
 
             }
+        }
+
+        private void btnSelectTravellerFile_Click(object sender, EventArgs e)
+        {
+            var openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Zip files (*.zip)|*.zip|json files (*.json)|*.json";
+            openFileDialog.RestoreDirectory = true;
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                txtFileName.Text = openFileDialog.FileName;
+            }
+
         }
     }
 }
