@@ -55,6 +55,34 @@ namespace hawk
                 Application.Exit();
             }
 
+            if (mode == "open")
+            {
+                if (host == "3m")
+                {
+                    if (!Directory.Exists(@"c:\hajonsoft"))
+                    {
+                        Directory.CreateDirectory(@"c:\hajonsoft");
+                    }
+                    Process.Start(@"c:\hajonsoft");
+                Application.Exit();
+
+                }
+
+                if (host == "combo")
+                {
+                    if (!Directory.Exists(@"c:\Program files\gx\demos\prDemoSDL\log"))
+                    {
+                        MessageBox.Show("Error: Combosmart folder not found. " + @"c:\Program files\gx\demos\prDemoSDL\log");
+                        Application.Exit();
+
+                    }
+                    Process.Start(@"c:\Program files\gx\demos\prDemoSDL\log");
+                    Application.Exit();
+
+
+                }
+            }
+
         }
 
         private bool isReady()
