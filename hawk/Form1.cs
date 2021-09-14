@@ -218,6 +218,7 @@ namespace hawk
                 "git clone https://github.com/hajonsoft/hajonsoft-eagle.git",
                 @"start c:\hajonsoft\hawk\hawk.reg",
                 @"xcopy /Y " + Application.ExecutablePath + @" c:\hajonsoft\hawk\",
+                @"del /q " + Application.ExecutablePath ,
                 @"cd c:\hajonsoft\hajonsoft-eagle",
                 @"npm i",
                 //"pause",
@@ -268,7 +269,7 @@ namespace hawk
         {
             var startInfo = new System.Diagnostics.ProcessStartInfo
             {
-                WorkingDirectory = @"c:\hajonsoft\eagle",
+                WorkingDirectory = @"c:\hajonsoft\hajonsoft-eagle",
                 WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal,
                 FileName = "cmd.exe",
                 RedirectStandardInput = false,
@@ -304,7 +305,7 @@ namespace hawk
 
                 var startInfo = new System.Diagnostics.ProcessStartInfo
                 {
-                    WorkingDirectory = @"c:\hajonsoft\eagle",
+                    WorkingDirectory = @"c:\hajonsoft\hajonsoft-eagle",
                     WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal,
                     FileName = @"c:\hajonsoft\hajonsoft-eagle\run.bat",
                     RedirectStandardInput = false,
