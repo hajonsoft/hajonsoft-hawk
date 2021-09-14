@@ -300,13 +300,13 @@ namespace hawk
                     startLines[2] = @"node . debug";
                     startLines.Add("pause");
                 }
-                File.WriteAllLines(@"c:\hajonsoft\eagle\run.bat", startLines);
+                File.WriteAllLines(@"c:\hajonsoft\hajonsoft-eagle\run.bat", startLines);
 
                 var startInfo = new System.Diagnostics.ProcessStartInfo
                 {
                     WorkingDirectory = @"c:\hajonsoft\eagle",
                     WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal,
-                    FileName = @"c:\hajonsoft\eagle\run.bat",
+                    FileName = @"c:\hajonsoft\hajonsoft-eagle\run.bat",
                     RedirectStandardInput = false,
                     UseShellExecute = true
                 };
