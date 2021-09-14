@@ -35,8 +35,6 @@
             this.tslMessage = new System.Windows.Forms.ToolStripStatusLabel();
             this.btnSelectTravellerFile = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btnCleanup = new System.Windows.Forms.Button();
             this.lblNotReady = new System.Windows.Forms.Label();
             this.btnStart = new System.Windows.Forms.Button();
             this.txtFileName = new System.Windows.Forms.TextBox();
@@ -48,11 +46,12 @@
             // btnSetup
             // 
             this.btnSetup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSetup.Location = new System.Drawing.Point(626, 385);
+            this.btnSetup.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSetup.Location = new System.Drawing.Point(626, 348);
             this.btnSetup.Name = "btnSetup";
-            this.btnSetup.Size = new System.Drawing.Size(162, 23);
+            this.btnSetup.Size = new System.Drawing.Size(162, 60);
             this.btnSetup.TabIndex = 1;
-            this.btnSetup.Text = "Restart Setup";
+            this.btnSetup.Text = "Setup";
             this.btnSetup.UseVisualStyleBackColor = true;
             this.btnSetup.Click += new System.EventHandler(this.btnSetup_Click);
             // 
@@ -92,7 +91,7 @@
             this.btnSelectTravellerFile.Name = "btnSelectTravellerFile";
             this.btnSelectTravellerFile.Size = new System.Drawing.Size(121, 23);
             this.btnSelectTravellerFile.TabIndex = 6;
-            this.btnSelectTravellerFile.Text = "Select file ...";
+            this.btnSelectTravellerFile.Text = "Select bundle file ...";
             this.btnSelectTravellerFile.UseVisualStyleBackColor = true;
             this.btnSelectTravellerFile.Click += new System.EventHandler(this.btnSelectTravellerFile_Click);
             // 
@@ -104,27 +103,6 @@
             this.label2.Size = new System.Drawing.Size(127, 13);
             this.label2.TabIndex = 7;
             this.label2.Text = "Traveller\'s File: [zip/json]";
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(295, 390);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(157, 13);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Something wrong? reset setup!";
-            // 
-            // btnCleanup
-            // 
-            this.btnCleanup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCleanup.Location = new System.Drawing.Point(458, 385);
-            this.btnCleanup.Name = "btnCleanup";
-            this.btnCleanup.Size = new System.Drawing.Size(162, 23);
-            this.btnCleanup.TabIndex = 11;
-            this.btnCleanup.Text = "Clean up";
-            this.btnCleanup.UseVisualStyleBackColor = true;
-            this.btnCleanup.Click += new System.EventHandler(this.btnCleanup_Click);
             // 
             // lblNotReady
             // 
@@ -141,11 +119,11 @@
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(109, 168);
+            this.btnStart.Location = new System.Drawing.Point(145, 125);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(215, 38);
+            this.btnStart.Size = new System.Drawing.Size(424, 38);
             this.btnStart.TabIndex = 13;
-            this.btnStart.Text = "Start";
+            this.btnStart.Text = "Start Eagle";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
@@ -163,7 +141,7 @@
             // dffDebugMode
             // 
             this.dffDebugMode.AutoSize = true;
-            this.dffDebugMode.Location = new System.Drawing.Point(330, 180);
+            this.dffDebugMode.Location = new System.Drawing.Point(575, 137);
             this.dffDebugMode.Name = "dffDebugMode";
             this.dffDebugMode.Size = new System.Drawing.Size(86, 17);
             this.dffDebugMode.TabIndex = 14;
@@ -172,11 +150,12 @@
             // 
             // btnOpenTerminal
             // 
+            this.btnOpenTerminal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnOpenTerminal.BackColor = System.Drawing.Color.Black;
             this.btnOpenTerminal.ForeColor = System.Drawing.Color.White;
-            this.btnOpenTerminal.Location = new System.Drawing.Point(658, 168);
+            this.btnOpenTerminal.Location = new System.Drawing.Point(15, 348);
             this.btnOpenTerminal.Name = "btnOpenTerminal";
-            this.btnOpenTerminal.Size = new System.Drawing.Size(87, 38);
+            this.btnOpenTerminal.Size = new System.Drawing.Size(124, 67);
             this.btnOpenTerminal.TabIndex = 15;
             this.btnOpenTerminal.Text = "Open terminal";
             this.btnOpenTerminal.UseVisualStyleBackColor = false;
@@ -191,8 +170,6 @@
             this.Controls.Add(this.dffDebugMode);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.lblNotReady);
-            this.Controls.Add(this.btnCleanup);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.txtFileName);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnSelectTravellerFile);
@@ -217,8 +194,6 @@
         private System.Windows.Forms.Button btnSelectTravellerFile;
         private System.Windows.Forms.TextBox txtFileName;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btnCleanup;
         private System.Windows.Forms.Label lblNotReady;
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.CheckBox dffDebugMode;

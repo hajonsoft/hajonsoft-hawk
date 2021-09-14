@@ -4,6 +4,7 @@
     <StartArguments>hawk://mode=open,fileName=SomePassports_qwgmxv.zip,host=breno1-81c45/</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
-    <StartArguments>mode=open,host=combo</StartArguments>
+    <StartArguments>
+    </StartArguments>
   </PropertyGroup>
 </Project>

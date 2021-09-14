@@ -20,7 +20,7 @@ namespace hawk
     {
         static string HAJONSOFT_FOLDER = @"c:\hajonsoft";
         static string HAWK_FOLDER = @"hawk";
-        static string EAGLE_FOLDER = @"eagle";
+        static string EAGLE_FOLDER = @"hajonsoft-eagle";
         private string EAGLE_URL = "http://github.com/hajonsoft/hajonsoft-eagle/archive/refs/heads/main.zip";
         private string HAWK_REG_URL = "https://raw.githubusercontent.com/hajonsoft/hajonsoft-hawk/main/hawk/hawk.reg";
         public string[] args;
@@ -207,25 +207,24 @@ namespace hawk
             }
             using (WebClient client = new WebClient())
             {
-                client.DownloadFile(new Uri(EAGLE_URL), Path.Combine(HAJONSOFT_FOLDER, "eagle.zip"));
                 client.DownloadFile(new Uri(HAWK_REG_URL), Path.Combine(HAJONSOFT_FOLDER, HAWK_FOLDER, "hawk.reg"));
 
             }
-            ZipFile.ExtractToDirectory(Path.Combine(HAJONSOFT_FOLDER, "eagle.zip"), HAJONSOFT_FOLDER);
             var renameLines = new List<string>
             {
+                @"pause",
                 @"c:",
                 @"cd c:\hajonsoft",
-                "rmdir eagle /s/q",
-                "ren hajonsoft-eagle-main eagle",
-                @"cd c:\hajonsoft\eagle",
-                @"npm i",
+                "git clone https://github.com/hajonsoft/hajonsoft-eagle.git",
                 @"start c:\hajonsoft\hawk\hawk.reg",
+                @"xcopy /Y " + Application.ExecutablePath + @" c:\hajonsoft\hawk\",
+                @"cd c:\hajonsoft\hajonsoft-eagle",
+                @"npm i",
                 //"pause",
             };
             File.WriteAllLines(Path.Combine(HAJONSOFT_FOLDER, HAWK_FOLDER, "rename-eagle.bat"), renameLines);
             Process.Start(Path.Combine(HAJONSOFT_FOLDER, HAWK_FOLDER, "rename-eagle.bat"));
-
+            Application.Exit();
         }
 
         private void downloadReg()
@@ -258,23 +257,6 @@ namespace hawk
         {
             createFoldersIfNotPresent();
 
-            //Create a batch file and execute it
-            var cleanupLines = new List<string>
-            {
-                @"c:",
-                @"cd c:\hajonsoft\eagle",
-                "del *.* /q/s",
-                "cd ..",
-                "rmdir eagle /s/q",
-                 @"cd c:\hajonsoft\hajonsoft-eagle-main",
-                "del *.* /q/s",
-                "cd ..",
-                "rmdir hajonsoft-eagle-main /s/q",
-                @"del c:\hajonsoft\eagle.zip",
-                //"pause",
-            };
-            File.WriteAllLines("cleanup-eagle.bat", cleanupLines);
-            Process.Start("cleanup-eagle.bat");
         }
 
         private void btnStart_Click(object sender, EventArgs e)
