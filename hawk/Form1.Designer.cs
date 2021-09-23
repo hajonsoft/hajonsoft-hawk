@@ -47,11 +47,11 @@
             // 
             this.btnSetup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSetup.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSetup.Location = new System.Drawing.Point(626, 348);
+            this.btnSetup.Location = new System.Drawing.Point(575, 357);
             this.btnSetup.Name = "btnSetup";
-            this.btnSetup.Size = new System.Drawing.Size(162, 60);
+            this.btnSetup.Size = new System.Drawing.Size(213, 51);
             this.btnSetup.TabIndex = 1;
-            this.btnSetup.Text = "Setup";
+            this.btnSetup.Text = "Connect";
             this.btnSetup.UseVisualStyleBackColor = true;
             this.btnSetup.Click += new System.EventHandler(this.btnSetup_Click);
             // 
@@ -60,12 +60,11 @@
             this.lblDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDescription.AutoSize = true;
-            this.lblDescription.Location = new System.Drawing.Point(160, 23);
+            this.lblDescription.Location = new System.Drawing.Point(302, 22);
             this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(481, 13);
+            this.lblDescription.Size = new System.Drawing.Size(167, 13);
             this.lblDescription.TabIndex = 2;
-            this.lblDescription.Text = "Hawk is a HAJonSoft application to connect Humming bird web application to Eagle " +
-    "node application";
+            this.lblDescription.Text = "Hawk connects Windows to Eagle";
             // 
             // statusStrip1
             // 
@@ -87,7 +86,7 @@
             // btnSelectTravellerFile
             // 
             this.btnSelectTravellerFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSelectTravellerFile.Location = new System.Drawing.Point(667, 98);
+            this.btnSelectTravellerFile.Location = new System.Drawing.Point(667, 159);
             this.btnSelectTravellerFile.Name = "btnSelectTravellerFile";
             this.btnSelectTravellerFile.Size = new System.Drawing.Size(121, 23);
             this.btnSelectTravellerFile.TabIndex = 6;
@@ -98,11 +97,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 103);
+            this.label2.Location = new System.Drawing.Point(12, 164);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(127, 13);
+            this.label2.Size = new System.Drawing.Size(110, 13);
             this.label2.TabIndex = 7;
-            this.label2.Text = "Traveller\'s File: [zip/json]";
+            this.label2.Text = "Bundle File: [zip/json]";
             // 
             // lblNotReady
             // 
@@ -119,11 +118,11 @@
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(145, 125);
+            this.btnStart.Location = new System.Drawing.Point(128, 186);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(424, 38);
+            this.btnStart.Size = new System.Drawing.Size(249, 38);
             this.btnStart.TabIndex = 13;
-            this.btnStart.Text = "Start Eagle";
+            this.btnStart.Text = "node . file=";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
@@ -132,16 +131,16 @@
             this.txtFileName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFileName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::hawk.Properties.Settings.Default, "fileName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtFileName.Location = new System.Drawing.Point(145, 99);
+            this.txtFileName.Location = new System.Drawing.Point(128, 160);
             this.txtFileName.Name = "txtFileName";
-            this.txtFileName.Size = new System.Drawing.Size(516, 20);
+            this.txtFileName.Size = new System.Drawing.Size(533, 20);
             this.txtFileName.TabIndex = 8;
             this.txtFileName.Text = global::hawk.Properties.Settings.Default.fileName;
             // 
             // dffDebugMode
             // 
             this.dffDebugMode.AutoSize = true;
-            this.dffDebugMode.Location = new System.Drawing.Point(575, 137);
+            this.dffDebugMode.Location = new System.Drawing.Point(383, 198);
             this.dffDebugMode.Name = "dffDebugMode";
             this.dffDebugMode.Size = new System.Drawing.Size(86, 17);
             this.dffDebugMode.TabIndex = 14;
@@ -151,13 +150,14 @@
             // btnOpenTerminal
             // 
             this.btnOpenTerminal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnOpenTerminal.BackColor = System.Drawing.Color.Black;
+            this.btnOpenTerminal.BackColor = System.Drawing.Color.Olive;
+            this.btnOpenTerminal.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOpenTerminal.ForeColor = System.Drawing.Color.White;
-            this.btnOpenTerminal.Location = new System.Drawing.Point(15, 348);
+            this.btnOpenTerminal.Location = new System.Drawing.Point(12, 90);
             this.btnOpenTerminal.Name = "btnOpenTerminal";
-            this.btnOpenTerminal.Size = new System.Drawing.Size(124, 67);
+            this.btnOpenTerminal.Size = new System.Drawing.Size(776, 60);
             this.btnOpenTerminal.TabIndex = 15;
-            this.btnOpenTerminal.Text = "Open terminal";
+            this.btnOpenTerminal.Text = "Eagle";
             this.btnOpenTerminal.UseVisualStyleBackColor = false;
             this.btnOpenTerminal.Click += new System.EventHandler(this.btnOpenTerminal_Click);
             // 
