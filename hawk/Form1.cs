@@ -224,7 +224,7 @@ namespace hawk
 
             if (!Application.ExecutablePath.ToLower().Contains(@"c:\hajonsoft\hawk"))
             {
-                renameLines.Add(@"xcopy /Y " + Application.ExecutablePath + @"c:\hajonsoft\hawk\");
+                renameLines.Add(@"xcopy /Y " + Application.ExecutablePath + @"   c:\hajonsoft\hawk\");
                 renameLines.Add(@"del / q " + Application.ExecutablePath);
             }
             File.WriteAllLines(Path.Combine(HAJONSOFT_FOLDER, HAWK_FOLDER, "rename-eagle.bat"), renameLines);
