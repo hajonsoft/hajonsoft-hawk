@@ -177,8 +177,7 @@ namespace hawk
         private void btnSetup_Click(object sender, EventArgs e)
         {
             createFoldersIfNotPresent();
-            downloadEagle(false);
-            // downloadReg();
+            startConnect(false);
         }
 
         private void createFoldersIfNotPresent() {
@@ -196,7 +195,7 @@ namespace hawk
             }
         }
 
-        private void downloadEagle(bool checkIsPresent)
+        private void startConnect(bool checkIsPresent)
         {
             if (checkIsPresent)
             {
@@ -210,23 +209,31 @@ namespace hawk
                 client.DownloadFile(new Uri(HAWK_REG_URL), Path.Combine(HAJONSOFT_FOLDER, HAWK_FOLDER, "hawk.reg"));
 
             }
+            var eaglePresent = Directory.Exists(Path.Combine(HAJONSOFT_FOLDER, HAWK_FOLDER));
             var renameLines = new List<string>
             {
                 @"pause",
                 @"c:",
                 @"cd c:\hajonsoft",
-                "git clone https://github.com/hajonsoft/hajonsoft-eagle.git",
                 @"start c:\hajonsoft\hawk\hawk.reg",
-                @"cd c:\hajonsoft\hajonsoft-eagle",
-                @"npm i",
-                //"pause",
             };
-
-            if (!Application.ExecutablePath.ToLower().Contains(@"c:\hajonsoft\hawk"))
+            if (!eaglePresent)
+            {
+                renameLines.Add("git clone https://github.com/hajonsoft/hajonsoft-eagle.git");
+            } else
+            {
+                renameLines.Add(@"cd c:\hajonsoft\hajonsoft-eagle");
+                renameLines.Add(@"git reset origin/main");
+                renameLines.Add(@"git pull");
+            }
+            if (!Application.ExecutablePath.ToLower().Contains(@"hajonsoft"))
             {
                 renameLines.Add(@"xcopy /Y " + Application.ExecutablePath + @"   c:\hajonsoft\hawk\");
                 renameLines.Add(@"del / q " + Application.ExecutablePath);
             }
+            renameLines.Add(@"cd c:\hajonsoft\hajonsoft-eagle");
+            renameLines.Add(@"npm i");
+            //renameLines.Add(@"pause");
             File.WriteAllLines(Path.Combine(HAJONSOFT_FOLDER, HAWK_FOLDER, "rename-eagle.bat"), renameLines);
             Process.Start(Path.Combine(HAJONSOFT_FOLDER, HAWK_FOLDER, "rename-eagle.bat"));
             Application.Exit();
