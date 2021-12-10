@@ -206,7 +206,7 @@ namespace hawk
                 client.DownloadFile(new Uri(HAWK_REG_URL), Path.Combine(HAJONSOFT_FOLDER, HAWK_FOLDER, "hawk.reg"));
 
             }
-            var eagleFolerPresent = Directory.Exists(Path.Combine(HAJONSOFT_FOLDER, HAWK_FOLDER));
+            var eagleFolerPresent = Directory.Exists(Path.Combine(HAJONSOFT_FOLDER, EAGLE_FOLDER));
             var renameLines = new List<string>
             {
                 @"pause",
