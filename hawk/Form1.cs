@@ -44,6 +44,7 @@ namespace hawk
         {
             if (!isReady())
             {
+                btnOpenTerminal.Visible = false;
                 return;
             }
             lblNotReady.Visible = false;
