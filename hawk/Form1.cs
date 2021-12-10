@@ -199,7 +199,8 @@ namespace hawk
         {
             if (checkIsPresent)
             {
-                if (File.Exists(Path.Combine(HAJONSOFT_FOLDER, EAGLE_FOLDER, "package.json")))
+
+                if (File.Exists(Path.Combine(HAJONSOFT_FOLDER, EAGLE_FOLDER, "package.json")) && !Directory.Exists(Path.Combine(HAJONSOFT_FOLDER, EAGLE_FOLDER, "node_modules")))
                 {
                     return;
                 }
@@ -209,7 +210,7 @@ namespace hawk
                 client.DownloadFile(new Uri(HAWK_REG_URL), Path.Combine(HAJONSOFT_FOLDER, HAWK_FOLDER, "hawk.reg"));
 
             }
-            var eaglePresent = Directory.Exists(Path.Combine(HAJONSOFT_FOLDER, HAWK_FOLDER));
+            var eagleFolerPresent = Directory.Exists(Path.Combine(HAJONSOFT_FOLDER, HAWK_FOLDER));
             var renameLines = new List<string>
             {
                 @"pause",
@@ -217,7 +218,7 @@ namespace hawk
                 @"cd c:\hajonsoft",
                 @"start c:\hajonsoft\hawk\hawk.reg",
             };
-            if (!eaglePresent)
+            if (!eagleFolerPresent)
             {
                 renameLines.Add("git clone https://github.com/hajonsoft/hajonsoft-eagle.git");
             } else
