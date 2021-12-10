@@ -189,10 +189,6 @@ namespace hawk
             {
                 Directory.CreateDirectory(Path.Combine(HAJONSOFT_FOLDER, HAWK_FOLDER));
             }
-            if (!Directory.Exists(Path.Combine(HAJONSOFT_FOLDER, EAGLE_FOLDER)))
-            {
-                Directory.CreateDirectory(Path.Combine(HAJONSOFT_FOLDER, EAGLE_FOLDER));
-            }
         }
 
         private void startConnect(bool checkIsPresent)
