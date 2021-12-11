@@ -43,14 +43,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.btnDeleteEagle = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSetup
             // 
             this.btnSetup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSetup.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSetup.Location = new System.Drawing.Point(575, 138);
+            this.btnSetup.Location = new System.Drawing.Point(314, 144);
             this.btnSetup.Name = "btnSetup";
             this.btnSetup.Size = new System.Drawing.Size(213, 51);
             this.btnSetup.TabIndex = 1;
@@ -64,7 +67,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDescription.AutoSize = true;
             this.lblDescription.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescription.Location = new System.Drawing.Point(245, 44);
+            this.lblDescription.Location = new System.Drawing.Point(12, 18);
             this.lblDescription.Name = "lblDescription";
             this.lblDescription.Size = new System.Drawing.Size(285, 23);
             this.lblDescription.TabIndex = 2;
@@ -90,7 +93,7 @@
             // btnSelectTravellerFile
             // 
             this.btnSelectTravellerFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSelectTravellerFile.Location = new System.Drawing.Point(667, 309);
+            this.btnSelectTravellerFile.Location = new System.Drawing.Point(667, 346);
             this.btnSelectTravellerFile.Name = "btnSelectTravellerFile";
             this.btnSelectTravellerFile.Size = new System.Drawing.Size(121, 23);
             this.btnSelectTravellerFile.TabIndex = 6;
@@ -101,7 +104,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 314);
+            this.label2.Location = new System.Drawing.Point(12, 351);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(110, 13);
             this.label2.TabIndex = 7;
@@ -109,12 +112,11 @@
             // 
             // lblNotReady
             // 
-            this.lblNotReady.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblNotReady.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNotReady.AutoSize = true;
             this.lblNotReady.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNotReady.ForeColor = System.Drawing.Color.Red;
-            this.lblNotReady.Location = new System.Drawing.Point(304, 97);
+            this.lblNotReady.Location = new System.Drawing.Point(420, 102);
             this.lblNotReady.Name = "lblNotReady";
             this.lblNotReady.Size = new System.Drawing.Size(193, 25);
             this.lblNotReady.TabIndex = 12;
@@ -122,7 +124,7 @@
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(128, 336);
+            this.btnStart.Location = new System.Drawing.Point(128, 373);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(249, 38);
             this.btnStart.TabIndex = 13;
@@ -135,7 +137,7 @@
             this.txtFileName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFileName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::hawk.Properties.Settings.Default, "fileName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtFileName.Location = new System.Drawing.Point(128, 310);
+            this.txtFileName.Location = new System.Drawing.Point(128, 347);
             this.txtFileName.Name = "txtFileName";
             this.txtFileName.Size = new System.Drawing.Size(533, 20);
             this.txtFileName.TabIndex = 8;
@@ -144,7 +146,7 @@
             // dffDebugMode
             // 
             this.dffDebugMode.AutoSize = true;
-            this.dffDebugMode.Location = new System.Drawing.Point(383, 348);
+            this.dffDebugMode.Location = new System.Drawing.Point(383, 385);
             this.dffDebugMode.Name = "dffDebugMode";
             this.dffDebugMode.Size = new System.Drawing.Size(86, 17);
             this.dffDebugMode.TabIndex = 14;
@@ -154,12 +156,12 @@
             // btnOpenTerminal
             // 
             this.btnOpenTerminal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnOpenTerminal.BackColor = System.Drawing.Color.Olive;
+            this.btnOpenTerminal.BackColor = System.Drawing.Color.Black;
             this.btnOpenTerminal.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOpenTerminal.ForeColor = System.Drawing.Color.White;
-            this.btnOpenTerminal.Location = new System.Drawing.Point(12, 133);
+            this.btnOpenTerminal.Location = new System.Drawing.Point(314, 258);
             this.btnOpenTerminal.Name = "btnOpenTerminal";
-            this.btnOpenTerminal.Size = new System.Drawing.Size(557, 60);
+            this.btnOpenTerminal.Size = new System.Drawing.Size(213, 51);
             this.btnOpenTerminal.TabIndex = 15;
             this.btnOpenTerminal.Text = "Eagle Terminal";
             this.btnOpenTerminal.UseVisualStyleBackColor = false;
@@ -168,7 +170,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(169, 72);
+            this.label1.Location = new System.Drawing.Point(12, 62);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(462, 13);
             this.label1.TabIndex = 16;
@@ -177,28 +179,54 @@
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(29, 206);
+            this.label3.Location = new System.Drawing.Point(533, 280);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(402, 39);
+            this.label3.Size = new System.Drawing.Size(38, 13);
             this.label3.TabIndex = 17;
-            this.label3.Text = "To get latest version of Eagle, please click Eagle Terminal button above, then ty" +
-    "pe\r\n\r\ngit pull";
+            this.label3.Text = "git pull";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(599, 192);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(163, 39);
+            this.label4.Size = new System.Drawing.Size(0, 13);
             this.label4.TabIndex = 18;
-            this.label4.Text = "For fresh install. Manually delete\r\n\r\nc:\\hajonsoft\\hajonsoft-eagle";
+            // 
+            // btnDeleteEagle
+            // 
+            this.btnDeleteEagle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeleteEagle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(67)))), ((int)(((byte)(54)))));
+            this.btnDeleteEagle.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteEagle.ForeColor = System.Drawing.Color.White;
+            this.btnDeleteEagle.Location = new System.Drawing.Point(314, 201);
+            this.btnDeleteEagle.Name = "btnDeleteEagle";
+            this.btnDeleteEagle.Size = new System.Drawing.Size(213, 51);
+            this.btnDeleteEagle.TabIndex = 19;
+            this.btnDeleteEagle.Text = "Delete Eagle";
+            this.btnDeleteEagle.UseVisualStyleBackColor = false;
+            this.btnDeleteEagle.Click += new System.EventHandler(this.btnDeleteEagle_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.Image = global::hawk.Properties.Resources.eagle;
+            this.pictureBox1.Location = new System.Drawing.Point(314, 88);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(100, 50);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 20;
+            this.pictureBox1.TabStop = false;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.btnDeleteEagle);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
@@ -217,6 +245,7 @@
             this.Text = "HAJonSoft Hawk";
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -237,6 +266,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnDeleteEagle;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

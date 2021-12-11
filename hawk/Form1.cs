@@ -337,5 +337,10 @@ namespace hawk
             }
 
         }
+
+        private void btnDeleteEagle_Click(object sender, EventArgs e)
+        {
+            Process.Start(Path.Combine(HAJONSOFT_FOLDER));
+        }
     }
 }

@@ -61,6 +61,16 @@ namespace hawk.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap eagle {
+            get {
+                object obj = ResourceManager.GetObject("eagle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to REGEDIT4
         ///
         ///[HKEY_CLASSES_ROOT\hawk]
@@ -68,7 +78,7 @@ namespace hawk.Properties {
         ///&quot;URL Protocol&quot;=&quot;&quot;
         ///
         ///[HKEY_CLASSES_ROOT\hawk\DefaultIcon]
-        ///@=&quot;\&quot;C:\\HAJonSoft\\hawk.exe\&quot;&quot;
+        ///@=&quot;\&quot;C:\\HAJonSoft\\hawk\\hawk.exe\&quot;&quot;
         ///
         ///[HKEY_CLASSES_ROOT\hawk\shell]
         ///
