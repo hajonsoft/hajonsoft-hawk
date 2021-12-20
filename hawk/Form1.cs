@@ -42,8 +42,7 @@ namespace hawk
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            if (!isReady())
-            {
+            if (!isReady() )           {
                 btnOpenTerminal.Visible = false;
                 return;
             }
@@ -341,6 +340,20 @@ namespace hawk
         private void btnDeleteEagle_Click(object sender, EventArgs e)
         {
             Process.Start(Path.Combine(HAJONSOFT_FOLDER));
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            var startInfo = new System.Diagnostics.ProcessStartInfo
+            {
+                WorkingDirectory = @"c:\hajonsoft\hajonsoft-eagle",
+                WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal,
+                FileName = "git",
+                Arguments = "pull",
+                RedirectStandardInput = false,
+                UseShellExecute = true
+            };
+            Process.Start(startInfo);
         }
     }
 }
