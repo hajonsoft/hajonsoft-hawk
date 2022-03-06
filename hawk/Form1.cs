@@ -1,18 +1,12 @@
-﻿using System;
+﻿using hawk.Properties;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.IO.Compression;
+using System.Linq;
 using System.Net;
-using System.Threading;
-using hawk.Properties;
+using System.Windows.Forms;
 
 namespace hawk
 {
@@ -21,7 +15,6 @@ namespace hawk
         static string HAJONSOFT_FOLDER = @"c:\hajonsoft";
         static string HAWK_FOLDER = @"hawk";
         static string EAGLE_FOLDER = @"hajonsoft-eagle";
-        private string EAGLE_URL = "http://github.com/hajonsoft/hajonsoft-eagle/archive/refs/heads/main.zip";
         private string HAWK_REG_URL = "https://raw.githubusercontent.com/hajonsoft/hajonsoft-hawk/main/hawk/hawk.reg";
         public string[] args;
         private string mode;
@@ -53,9 +46,7 @@ namespace hawk
             {
                 startSend(zipFileName,  false);
                 Application.Exit();
-            }
-
-            if (mode == "open")
+            } else if (mode == "open")
             {
                 if (host == "3m")
                 {
@@ -128,7 +119,7 @@ namespace hawk
                 return;
             }
             Text = string.Join(" ", args);
-            var parameters = args[0].Replace("hawk://", "").Replace("hawk://", "").Split(',');
+            var parameters = args[0].Replace("hawk://", "").Split(',');
             mode = GetParameterValue(parameters, "mode");
             zipFileName = GetParameterValue(parameters, "fileName");
             host = GetParameterValue(parameters, "host");
