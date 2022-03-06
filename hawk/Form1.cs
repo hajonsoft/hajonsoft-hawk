@@ -48,6 +48,7 @@ namespace hawk
                 Application.Exit();
             } else if (mode == "open")
             {
+
                 if (host == "3m")
                 {
                     if (!Directory.Exists(@"c:\hajonsoft"))
@@ -63,7 +64,7 @@ namespace hawk
                 {
                     if (!Directory.Exists(@"c:\Program files\gx\demos\prDemoSDL\log"))
                     {
-                        MessageBox.Show("Error: Combosmart folder not found. " + @"c:\Program files\gx\demos\prDemoSDL\log");
+                        MessageBox.Show("Error: Combosmart folder is not found at " + @"c:\Program files\gx\demos\prDemoSDL\log","Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         Application.Exit();
 
                     }
@@ -72,6 +73,11 @@ namespace hawk
 
 
                 }
+            } else if (mode == "scan")
+            {
+                //TODO: Get the firebase token to save directly to firebase
+                var scanForm = new fromScan();
+                scanForm.ShowDialog();
             }
 
         }
@@ -152,10 +158,10 @@ namespace hawk
             {
                 if (parameters[i].StartsWith(key))
                 {
-                    var parameterKeyValue = parameters[i].Split('=');
-                    if (parameterKeyValue.Count() >= 2)
+                    var val = parameters[i].Split('=');
+                    if (val.Count() >= 2)
                     {
-                        return parameterKeyValue[1];
+                        return val[1].TrimEnd('/');
                     }
                 }
             }
