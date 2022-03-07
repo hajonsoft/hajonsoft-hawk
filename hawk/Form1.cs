@@ -64,7 +64,7 @@ namespace hawk
                 {
                     if (!Directory.Exists(@"c:\Program files\gx\demos\prDemoSDL\log"))
                     {
-                        MessageBox.Show("Error: Combosmart folder is not found at " + @"c:\Program files\gx\demos\prDemoSDL\log","Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Error: ARH Combo Smart folder is not found at " + @"c:\Program files\gx\demos\prDemoSDL\log","Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         Application.Exit();
 
                     }
