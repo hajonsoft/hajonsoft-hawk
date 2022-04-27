@@ -380,5 +380,12 @@ namespace hawk
             var scanForm = new fromScan();
             scanForm.ShowDialog();
         }
+
+        private void btnEhaj_Click(object sender, EventArgs e)
+        {
+
+            var ehajForm = new frmEhaj();
+            ehajForm.ShowDialog();
+        }
     }
 }

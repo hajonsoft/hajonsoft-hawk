@@ -46,6 +46,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnScan = new System.Windows.Forms.Button();
+            this.btnEhaj = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -237,11 +238,24 @@
             this.btnScan.UseVisualStyleBackColor = true;
             this.btnScan.Click += new System.EventHandler(this.btnScan_Click);
             // 
+            // btnEhaj
+            // 
+            this.btnEhaj.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEhaj.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEhaj.Location = new System.Drawing.Point(575, 202);
+            this.btnEhaj.Name = "btnEhaj";
+            this.btnEhaj.Size = new System.Drawing.Size(213, 51);
+            this.btnEhaj.TabIndex = 23;
+            this.btnEhaj.Text = "Ehaj";
+            this.btnEhaj.UseVisualStyleBackColor = true;
+            this.btnEhaj.Click += new System.EventHandler(this.btnEhaj_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnEhaj);
             this.Controls.Add(this.btnScan);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.pictureBox1);
@@ -287,6 +301,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnScan;
+        private System.Windows.Forms.Button btnEhaj;
     }
 }
 
