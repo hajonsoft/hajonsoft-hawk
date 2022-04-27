@@ -45,6 +45,7 @@
             this.btnDeleteEagle = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnScan = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -53,7 +54,7 @@
             // 
             this.btnSetup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSetup.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSetup.Location = new System.Drawing.Point(314, 144);
+            this.btnSetup.Location = new System.Drawing.Point(16, 145);
             this.btnSetup.Name = "btnSetup";
             this.btnSetup.Size = new System.Drawing.Size(213, 51);
             this.btnSetup.TabIndex = 1;
@@ -116,7 +117,7 @@
             this.lblNotReady.AutoSize = true;
             this.lblNotReady.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNotReady.ForeColor = System.Drawing.Color.Red;
-            this.lblNotReady.Location = new System.Drawing.Point(420, 102);
+            this.lblNotReady.Location = new System.Drawing.Point(122, 103);
             this.lblNotReady.Name = "lblNotReady";
             this.lblNotReady.Size = new System.Drawing.Size(193, 25);
             this.lblNotReady.TabIndex = 12;
@@ -159,7 +160,7 @@
             this.btnOpenTerminal.BackColor = System.Drawing.Color.Black;
             this.btnOpenTerminal.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOpenTerminal.ForeColor = System.Drawing.Color.White;
-            this.btnOpenTerminal.Location = new System.Drawing.Point(314, 258);
+            this.btnOpenTerminal.Location = new System.Drawing.Point(16, 259);
             this.btnOpenTerminal.Name = "btnOpenTerminal";
             this.btnOpenTerminal.Size = new System.Drawing.Size(213, 51);
             this.btnOpenTerminal.TabIndex = 15;
@@ -191,7 +192,7 @@
             this.btnDeleteEagle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(67)))), ((int)(((byte)(54)))));
             this.btnDeleteEagle.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteEagle.ForeColor = System.Drawing.Color.White;
-            this.btnDeleteEagle.Location = new System.Drawing.Point(314, 201);
+            this.btnDeleteEagle.Location = new System.Drawing.Point(16, 202);
             this.btnDeleteEagle.Name = "btnDeleteEagle";
             this.btnDeleteEagle.Size = new System.Drawing.Size(213, 51);
             this.btnDeleteEagle.TabIndex = 19;
@@ -203,7 +204,7 @@
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Image = global::hawk.Properties.Resources.eagle;
-            this.pictureBox1.Location = new System.Drawing.Point(314, 88);
+            this.pictureBox1.Location = new System.Drawing.Point(16, 89);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(100, 50);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -216,7 +217,7 @@
             this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.btnUpdate.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnUpdate.Location = new System.Drawing.Point(533, 275);
+            this.btnUpdate.Location = new System.Drawing.Point(235, 276);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(102, 34);
             this.btnUpdate.TabIndex = 21;
@@ -224,11 +225,24 @@
             this.btnUpdate.UseVisualStyleBackColor = false;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
+            // btnScan
+            // 
+            this.btnScan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnScan.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnScan.Location = new System.Drawing.Point(575, 145);
+            this.btnScan.Name = "btnScan";
+            this.btnScan.Size = new System.Drawing.Size(213, 51);
+            this.btnScan.TabIndex = 22;
+            this.btnScan.Text = "Scan";
+            this.btnScan.UseVisualStyleBackColor = true;
+            this.btnScan.Click += new System.EventHandler(this.btnScan_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnScan);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnDeleteEagle);
@@ -272,6 +286,7 @@
         private System.Windows.Forms.Button btnDeleteEagle;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button btnScan;
     }
 }
 

@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace hawk
@@ -26,7 +20,7 @@ namespace hawk
             startWatching();
         }
 
-            private void fromScan_FormClosing(object sender, FormClosingEventArgs e)
+        private void fromScan_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
         }
@@ -39,26 +33,61 @@ namespace hawk
             }
 
             fwHajonsoft.EnableRaisingEvents = false;
-                fwHajonsoft.IncludeSubdirectories = false;
-                fwHajonsoft.Path = @"c:\HajOnSoft";
-                fwHajonsoft.NotifyFilter = NotifyFilters.FileName;
-                fwHajonsoft.Created += fwHajonsoft_Created;
-                fwHajonsoft.EnableRaisingEvents = true;
+            fwHajonsoft.IncludeSubdirectories = false;
+            fwHajonsoft.Path = @"c:\HajOnSoft";
+            fwHajonsoft.NotifyFilter = NotifyFilters.FileName;
+            fwHajonsoft.Created += fw3M_created;
+            fwHajonsoft.EnableRaisingEvents = true;
 
-               //archFolder = HiSpeedOCR.GetIniValueString("ARHLOG", @"c:\Program Files\GX\demos\PrDemoSDL\log");
-                if (Directory.Exists(archFolder))
-                {
-                    fwArh.EnableRaisingEvents = false;
+            //archFolder = HiSpeedOCR.GetIniValueString("ARHLOG", @"c:\Program Files\GX\demos\PrDemoSDL\log");
+            if (Directory.Exists(archFolder))
+            {
+                fwArh.EnableRaisingEvents = false;
                 fwArh.IncludeSubdirectories = false;
-                    fwArh.Path = archFolder;
-                    fwArh.Created += fwArh_Created;
-                    fwArh.EnableRaisingEvents = true;
-                }
-            
-        }
+                fwArh.Path = archFolder;
+                fwArh.Created += fwArh_Created;
+                fwArh.EnableRaisingEvents = true;
+            }
 
+        }
+        private string GetCodeLineString(string fileName)
+        {
+            string thisCodeLine;
+            var waitCounter = 0;
+            while (true) //try to read code line and make sure the file is not locked
+            {
+
+                using (
+                    var fs = new FileStream(fileName, FileMode.Open, FileAccess.Read,
+                        FileShare.Read))
+                {
+                    using (var sr = new StreamReader(fs, Encoding.Default))
+                    {
+                        thisCodeLine = sr.ReadToEnd();
+                    }
+                }
+
+                if (string.IsNullOrEmpty(thisCodeLine) || thisCodeLine.Length < 80)
+                {
+                    waitCounter++;
+                    if (waitCounter > 100)
+                    {
+                        break;
+                    }
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            char[] charsToTrim = { '\n', '\r', ' ' };
+            thisCodeLine = thisCodeLine.Trim().TrimEnd(charsToTrim);
+
+            return thisCodeLine;
+        }
         private string chip = "";
-        private void fwHajonsoft_Created(object sender, FileSystemEventArgs e)
+        private void fw3M_created(object sender, FileSystemEventArgs e)
         {
             if (!e.Name.Contains("-") || e.Name.ToLower().StartsWith("img"))
             //This is a generic image - later find if it has a face and if it is small enough to be an image and put it in the photo location instead
@@ -74,10 +103,26 @@ namespace hawk
             {
                 return; //no longer using IR image
             }
+            else if (e.Name.ToUpper().Contains("CODELINE.TXT"))
+            {
+                var codeline = GetCodeLineString(e.FullPath);
+                dfsCodeLine.Text = codeline;
+                var name = "";
+                var dob = "";
+                var issueDate = "";
+                var expireDate = "";
+                var nationality = "";
+                var issuingCountry = "";
+                var passportNumber = "";
+                var gender = "";
+
+
+                return;
+            }
             else if (e.Name.ToUpper().Contains("IMAGEVIS.JPG"))
             {
                 imgPassport.ImageLocation = e.FullPath;
-                return; 
+                return;
             }
             else if (e.Name.ToUpper().Contains("IMAGEPHOTO") && e.Name.ToUpper().Contains("JPG"))
             {

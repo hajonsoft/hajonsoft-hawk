@@ -35,7 +35,8 @@ namespace hawk
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            if (!isReady() )           {
+            if (!isReady())
+            {
                 btnOpenTerminal.Visible = false;
                 return;
             }
@@ -44,9 +45,10 @@ namespace hawk
             // This zipfile will contain only one file data.json. If you call node witout any parameter, it will use data.json
             if (mode == "send")
             {
-                startSend(zipFileName,  false);
+                startSend(zipFileName, false);
                 Application.Exit();
-            } else if (mode == "open")
+            }
+            else if (mode == "open")
             {
 
                 if (host == "3m")
@@ -56,7 +58,7 @@ namespace hawk
                         Directory.CreateDirectory(@"c:\hajonsoft");
                     }
                     Process.Start(@"c:\hajonsoft");
-                Application.Exit();
+                    Application.Exit();
 
                 }
 
@@ -64,7 +66,7 @@ namespace hawk
                 {
                     if (!Directory.Exists(@"c:\Program files\gx\demos\prDemoSDL\log"))
                     {
-                        MessageBox.Show("Error: ARH Combo Smart folder is not found at " + @"c:\Program files\gx\demos\prDemoSDL\log","Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Error: ARH Combo Smart folder is not found at " + @"c:\Program files\gx\demos\prDemoSDL\log", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         Application.Exit();
 
                     }
@@ -73,7 +75,8 @@ namespace hawk
 
 
                 }
-            } else if (mode == "scan")
+            }
+            else if (mode == "scan")
             {
                 //TODO: Get the firebase token to save directly to firebase
                 var scanForm = new fromScan();
@@ -84,10 +87,25 @@ namespace hawk
 
         private bool isReady()
         {
-            if (!Directory.Exists(HAJONSOFT_FOLDER)) return false;
-            if (!Directory.Exists(Path.Combine(HAJONSOFT_FOLDER, EAGLE_FOLDER))) return false;
-            if (!File.Exists(Path.Combine(HAJONSOFT_FOLDER, EAGLE_FOLDER, "package.json"))) return false;
-            if (!Directory.Exists(Path.Combine(HAJONSOFT_FOLDER, EAGLE_FOLDER, "node_modules"))) return false;
+            if (!Directory.Exists(HAJONSOFT_FOLDER))
+            {
+                return false;
+            }
+
+            if (!Directory.Exists(Path.Combine(HAJONSOFT_FOLDER, EAGLE_FOLDER)))
+            {
+                return false;
+            }
+
+            if (!File.Exists(Path.Combine(HAJONSOFT_FOLDER, EAGLE_FOLDER, "package.json")))
+            {
+                return false;
+            }
+
+            if (!Directory.Exists(Path.Combine(HAJONSOFT_FOLDER, EAGLE_FOLDER, "node_modules")))
+            {
+                return false;
+            }
 
             return true;
         }
@@ -106,9 +124,10 @@ namespace hawk
                 return;
             }
             extractPath = Path.Combine(HAJONSOFT_FOLDER, EAGLE_FOLDER);
-            if (File.Exists(Path.Combine(extractPath, "data.json"))) {
+            if (File.Exists(Path.Combine(extractPath, "data.json")))
+            {
                 File.Delete(Path.Combine(extractPath, "data.json"));
-                }
+            }
             ZipFile.ExtractToDirectory(zipFilePath, extractPath);
         }
 
@@ -133,14 +152,14 @@ namespace hawk
         Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
         "Downloads");
             var defaultZipFilePath = Path.Combine(defaultDownloadFolder, zipFileName);
-            
+
             if (File.Exists(defaultZipFilePath))
             {
                 zipFileName = defaultZipFilePath;
                 tslMessage.Text = "Mode = " + mode + "  FileName= " + zipFileName + "  Host=" + host + "  DownloadFolder=" + Path.GetDirectoryName(zipFileName);
                 return;
             }
-            if (!string.IsNullOrEmpty( txtFileName.Text))
+            if (!string.IsNullOrEmpty(txtFileName.Text))
             {
                 var userSelectedZipFilePath = Path.Combine(Path.GetDirectoryName(txtFileName.Text), zipFileName);
                 if (File.Exists(userSelectedZipFilePath))
@@ -169,7 +188,7 @@ namespace hawk
             return "";
 
         }
-        
+
 
         private void btnSetup_Click(object sender, EventArgs e)
         {
@@ -177,7 +196,8 @@ namespace hawk
             startConnect(false);
         }
 
-        private void createFoldersIfNotPresent() {
+        private void createFoldersIfNotPresent()
+        {
             if (!Directory.Exists(HAJONSOFT_FOLDER))
             {
                 Directory.CreateDirectory(HAJONSOFT_FOLDER);
@@ -214,7 +234,8 @@ namespace hawk
             if (!eagleFolerPresent)
             {
                 renameLines.Add("git clone https://github.com/hajonsoft/hajonsoft-eagle.git");
-            } else
+            }
+            else
             {
                 renameLines.Add(@"cd c:\hajonsoft\hajonsoft-eagle");
                 renameLines.Add(@"git reset origin/main");
@@ -235,7 +256,7 @@ namespace hawk
 
         private void downloadReg()
         {
-            
+
             using (WebClient client = new WebClient())
             {
                 client.DownloadFile(new Uri(HAWK_REG_URL), Path.Combine(HAJONSOFT_FOLDER, HAWK_FOLDER, "hawk.reg"));
@@ -287,10 +308,11 @@ namespace hawk
         {
             if (!File.Exists(dataFile))
             {
-                MessageBox.Show("Data file not found! Please check the file exists and try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error) ;
+                MessageBox.Show("Data file not found! Please check the file exists and try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (Path.GetExtension(dataFile).ToLower() == ".zip") {
+            if (Path.GetExtension(dataFile).ToLower() == ".zip")
+            {
                 unzipFile(dataFile);
             }
             var startLines = new List<string>
@@ -351,6 +373,12 @@ namespace hawk
                 UseShellExecute = true
             };
             Process.Start(startInfo);
+        }
+
+        private void btnScan_Click(object sender, EventArgs e)
+        {
+            var scanForm = new fromScan();
+            scanForm.ShowDialog();
         }
     }
 }
